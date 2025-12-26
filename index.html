@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تحديات نافس – من إعداد الطالب عزام اللذيذ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- تصميم جديد مختلف عن منصات نافس ولغتي (ألوان تركواز ووردي وأسلوب كرتوني بسيط) -->
+    <style>
+        :root {
+            --bg: #fdf2f8;          /* وردي فاتح جداً للخلفية */
+            --bg-accent: #e0f2fe;   /* أزرق ثلجي فاتح */
+            --mint: #ccfbf1;        /* تركواز فاتح */
+            --teal: #0f766e;        /* تركواز غامق */
+            --pink: #ec4899;        /* وردي قوي */
+            --indigo: #4f46e5;      /* بنفسجي مزرق */
+            --card-bg: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --radius-lg: 20px;
+            --pill-radius: 999px;
+            --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.10);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Tahoma", sans-serif;
+            background: radial-gradient(circle at top, #e0f2fe 0, #fdf2f8 40%, #fefce8 100%);
+            color: var(--text-main);
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 18px 14px 40px;
+        }
+
+        /* شريط علوي بسيط مع الشعار */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .school-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .school-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--teal);
+        }
+
+        .logo-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+        }
+
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* الهيدر الرئيسي */
+        header {
+            position: relative;
+            background: radial-gradient(circle at top left, #a5f3fc 0, #e0f2fe 40%, #fdf2f8 100%);
+            border-radius: 26px;
+            padding: 22px 18px 24px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset-inline-start: -40px;
+            top: -50px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 14px dashed rgba(236, 72, 153, 0.22);
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            inset-inline-end: -60px;
+            bottom: -80px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.18), transparent 70%);
+        }
+
+        .header-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* شعار نافس داخل الهيدر */
+        .nafis-logo {
+            position: absolute;
+            inset-inline-end: 14px;
+            top: 14px;
+            width: 90px;
+            height: 90px;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            background: #ffffff;
+        }
+
+        .nafis-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: var(--pill-radius);
+            background: rgba(15, 23, 42, 0.06);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #22c55e;
+        }
+
+        .hero-title {
+            margin: 12px 0 4px;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            color: var(--indigo);
+        }
+
+        .hero-subtitle {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .hero-meta {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .hero-meta span.label {
+            font-weight: 700;
+            color: var(--pink);
+        }
+
+        .hero-tags {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 5px 11px;
+            border-radius: var(--pill-radius);
+            background: #fef9c3;
+            font-size: 12px;
+            border: 1px dashed rgba(234, 179, 8, 0.6);
+            color: #854d0e;
+        }
+
+        /* تخطيط عام */
+        .layout {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 16px 16px 18px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 13px;
+            background: var(--mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .card-title {
+            margin: 0;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .card-subtitle {
+            margin: 0;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .hint-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .pill-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+            display: grid;
+            gap: 6px;
+        }
+
+        .pill-item {
+            padding: 7px 10px;
+            border-radius: 14px;
+            background: var(--bg-accent);
+            font-size: 13px;
+        }
+
+        .pill-item span {
+            font-weight: 600;
+            color: var(--teal);
+        }
+
+        .badge-box {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 10px 12px;
+            background: #f5f3ff;
+            border-radius: 16px;
+            border: 1px dashed rgba(129, 140, 248, 0.8);
+            font-size: 13px;
+            color: #4c1d95;
+        }
+
+        .badge-box strong {
+            font-size: 14px;
+        }
+
+        /* قسم الأسئلة */
+        .questions {
+            margin-top: 18px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin: 0 0 6px;
+            color: var(--teal);
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0 0 10px;
+        }
+
+        .reading-box {
+            margin-bottom: 12px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: #ecfeff;
+            border: 1px dashed rgba(14, 165, 233, 0.5);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .reading-box-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #0369a1;
+        }
+
+        .question-card {
+            margin-bottom: 12px;
+            padding: 12px 12px 10px;
+            border-radius: 16px;
+            background: #ffffff;
+            border: 1px solid rgba(148, 163, 184, 0.26);
+            position: relative;
+        }
+
+        .question-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .question-number {
+            width: 26px;
+            height: 26px;
+            border-radius: 10px;
+            background: #fce7f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--pink);
+        }
+
+        .question-type {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: var(--pill-radius);
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .question-text {
+            font-size: 14px;
+            margin: 4px 0 6px;
+            line-height: 1.7;
+        }
+
+        .options {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 6px;
+            font-size: 13px;
+        }
+
+        .options li {
+            margin-bottom: 3px;
+        }
+
+        .answer-btn {
+            font-size: 12px;
+            border: none;
+            border-radius: var(--pill-radius);
+            padding: 5px 10px;
+            background: var(--teal);
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .answer-btn:hover {
+            opacity: 0.9;
+        }
+
+        .answer-box {
+            margin-top: 6px;
+            padding: 6px 8px;
+            border-radius: 12px;
+            background: #ecfdf5;
+            border: 1px dashed rgba(34, 197, 94, 0.7);
+            font-size: 13px;
+            color: #166534;
+            display: none;
+        }
+
+        .question-card.open .answer-box {
+            display: block;
+        }
+
+        .question-card.open .answer-btn {
+            background: #065f46;
+        }
+
+        /* تذييل النتيجة */
+        .result-card {
+            margin-top: 10px;
+            padding: 12px 12px 14px;
+            border-radius: 18px;
+            background: #fef9c3;
+            border: 1px dashed rgba(234, 179, 8, 0.7);
+            font-size: 14px;
+            color: #713f12;
+        }
+
+        .result-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        /* رسالة الإشراف والفوتر */
+        .footer {
+            margin-top: 22px;
+            font-size: 13px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .footer span {
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        @media (max-width: 480px) {
+            header {
+                border-radius: 22px;
+            }
+            .hero-title {
+                font-size: 22px;
+            }
+            .nafis-logo {
+                width: 75px;
+                height: 75px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- شريط علوي: الشعار + اسم المدرسة -->
+    <div class="topbar">
+        <div class="school-info">
+            <div class="school-name">مدرسة الإمام الشوكاني الابتدائية</div>
+            <div>مشروع طالب مبدع عن اختبار نافس</div>
+        </div>
+        <div class="logo-box">
+            <!-- شعار مدرسة الإمام الشوكاني -->
+            <img src="https://i.postimg.cc/8kr7QHjG/O-U-O-U-U-O-U-U-3.png" alt="شعار مدرسة الإمام الشوكاني الابتدائية">
+        </div>
+    </div>
+
+    <!-- الهيدر الرئيسي -->
+    <header>
+        <!-- شعار نافس -->
+        <div class="nafis-logo">
+            <img src="https://i.postimg.cc/Z5wPQcM3/IMG-0006.jpg" alt="شعار نافس">
+        </div>
+
+        <div class="header-inner">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                موقع أسئلة وتحديات نافس – مشروع طالب
+            </div>
+
+            <h1 class="hero-title">تحديات نافس</h1>
+            <p class="hero-subtitle">
+                موقع بسيط ممتع للتدريب على أسئلة شبيهة باختبار نافس، من إعداد طالب يحب التحدي
+                ومشاركة الفائدة مع زملائه.
+            </p>
+
+            <div class="hero-meta">
+                <div><span class="label">إعداد الطالب:</span> عزام اللذيذ</div>
+                <div><span class="label">إشراف المعلم:</span> مقرن المطيري</div>
+            </div>
+
+            <div class="hero-tags">
+                <div class="tag">تحديات وأسئلة</div>
+                <div class="tag">تدريب على الفهم القرائي</div>
+                <div class="tag">مفردات ومهارات عليا</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- التخطيط العام: التعليمات + لمحة عن نافس -->
+    <div class="layout">
+        <!-- العمود 1: تعليمات اللعب -->
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">🎮</div>
+                <div>
+                    <h2 class="card-title">كيف تستخدم هذا الموقع؟</h2>
+                    <p class="card-subtitle">أسئلة بسيطة… لكن تحتاج تركيز 😉</p>
+                </div>
+            </div>
+            <p class="hint-text">
+                هذا الموقع ليس اختبارًا رسميًا، بل تحديات خفيفة للتدريب على طريقة
+                الأسئلة في اختبار نافس. اقرأ السؤال بتركيز، فكّر في الإجابة، ثم اضغط على
+                زر <strong>إظهار الإجابة</strong> لتقارن بين إجابتك والإجابة المقترحة.
+            </p>
+            <ul class="pill-list">
+                <li class="pill-item"><span>١.</span> لا تُسابق الوقت… خذ وقتك في التفكير.</li>
+                <li class="pill-item"><span>٢.</span> حاول الإجابة وحدك قبل إظهار الإجابة.</li>
+                <li class="pill-item"><span>٣.</span> إذا أخطأت فهذا يعني أنك تتعلم وتتقدم.</li>
+                <li class="pill-item"><span>٤.</span> يمكنك استخدام الموقع أكثر من مرة للتدريب.</li>
+            </ul>
+
+            <div class="badge-box">
+                <strong>رسالة من الطالب عزام 👦</strong>
+                <span>صديقي الطالب…</span>
+                <span>
+                    أتمنى أن تستفيد من هذه الأسئلة، وأن تساعدك على تحسين مستواك في القراءة
+                    والمفردات والاستعداد لنافس بثقة وهدوء.
+                </span>
+            </div>
+        </section>
+
+        <!-- العمود 2: عن اختبار نافس -->
+        <section class="card">
+            <div class="card-header">
+                <div class="card-icon">📚</div>
+                <div>
+                    <h2 class="card-title">ما فكرة هذه التحديات؟</h2>
+                    <p class="card-subtitle">لماذا صنع عزام هذا الموقع؟</p>
+                </div>
+            </div>
+            <p class="hint-text">
+                أسئلة نافس تهتم بالفهم، والتفكير، واستعمال المهارات، وليست حفظًا فقط.  
+                لذلك قرر الطالب <strong>عزام اللذيذ</strong> أن يصمّم هذه الصفحة كفكرة
+                بسيطة للتدريب على نوعية الأسئلة، ومشاركة زملائه روح التحدي وحب التعلّم.
+            </p>
+            <p class="hint-text">
+                الأسئلة هنا:
+            </p>
+            <ul class="pill-list">
+                <li class="pill-item">تركّز على <span>فهم النصوص</span>.</li>
+                <li class="pill-item">تراجِع <span>المفردات والمعاني</span>.</li>
+                <li class="pill-item">تنمّي <span>مهارات التفكير العليا</span> مثل الاستنتاج.</li>
+                <li class="pill-item">تذكّر بأهم <span>عادات الطالب المتفوق</span>.</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- قسم الأسئلة والتحديات -->
+    <section class="card questions">
+        <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <div>
+                <h2 class="card-title">أسئلة وتحديات نافس</h2>
+                <p class="card-subtitle">فكر جيدًا… ثم اضغط على زر "إظهار الإجابة"</p>
+            </div>
+        </div>
+
+        <!-- نص قصير للفهم القرائي -->
+        <div class="reading-box">
+            <div class="reading-box-title">نص للتفكير والقراءة</div>
+            في صباحٍ هادئ، دخل الطلاب إلى المدرسة وهم يتبادلون الأحاديث والابتسامات.
+            كان المعلم يرحّب بكل طالب عند باب الفصل، ويقول لهم:  
+            "من يبدأ يومه بابتسامة، يبدأه بطاقةٍ إيجابية تساعده على التعلّم."  
+            جلس الطلاب في أماكنهم، وبدأت المدرسة إذاعتها الصباحية بكلمات عن أهمية
+            الاستعداد لاختبار نافس، وعدم الخوف منه، لأنه فرصة لإظهار ما تعلموه خلال العام.
+        </div>
+
+        <!-- سؤال 1 -->
+        <div class="question-card" id="q1">
+            <div class="question-header">
+                <div class="question-number">1</div>
+                <div class="question-type">فهم النص</div>
+            </div>
+            <div class="question-text">
+                ما الفكرة الرئيسة للنص السابق؟
+            </div>
+            <ul class="options">
+                <li>أ) وصف شكل الفصل وأثاثه.</li>
+                <li>ب) الحديث عن أهمية الابتسامة والاستعداد للتعلم.</li>
+                <li>ج) شرح طريقة إعداد إذاعة مدرسية.</li>
+                <li>د) سرد قصة لعب الطلاب في الفسحة.</li>
+            </ul>
+            <button class="answer-btn" onclick="toggleAnswer('q1')">إظهار الإجابة</button>
+            <div class="answer-box">
+                الإجابة الصحيحة: <strong>ب) الحديث عن أهمية الابتسامة والاستعداد للتعلم.</strong><br>
+                لأن النص يركّز على استقبال المعلم للطلاب بابتسامة، وربط ذلك بالاستعداد
+                للتعلّم وللاختبارات مثل نافس.
+            </div>
+        </div>
+
+        <!-- سؤال 2 -->
+        <div class="question-card" id="q2">
+            <div class="question-header">
+                <div class="question-number">2</div>
+                <div class="question-type">فهم تفصيلي</div>
+            </div>
+            <div class="question-text">
+                لماذا قال المعلم: "من يبدأ يومه بابتسامة، يبدأه بطاقة إيجابية"؟
+            </div>
+            <button class="answer-btn" onclick="toggleAnswer('q2')">إظهار الإجابة</button>
+            <div class="answer-box">
+                لأن الابتسامة تساعد الطالب على الشعور بالراحة والهدوء، وتجعله أكثر استعدادًا
+                للاستماع، والفهم، والتفاعل داخل الفصل، وهذا يرفع من فرص نجاحه في الاختبارات.
+            </div>
+        </div>
+
+        <!-- سؤال 3 -->
+        <div class="question-card" id="q3">
+            <div class="question-header">
+                <div class="question-number">3</div>
+                <div class="question-type">استنتاج</div>
+            </div>
+            <div class="question-text">
+                ما الصفة التي يمكن أن نصف بها المعلم في النص؟
+            </div>
+            <ul class="options">
+                <li>أ) قاسٍ.</li>
+                <li>ب) مهمل.</li>
+                <li>ج) مشجع ومهتم بطلابه.</li>
+                <li>د) غير منظم.</li>
+            </ul>
+            <button class="answer-btn" onclick="toggleAnswer('q3')">إظهار الإجابة</button>
+            <div class="answer-box">
+                الأنسب هو: <strong>ج) مشجع ومهتم بطلابه.</strong><br>
+                لأنه يستقبلهم بابتسامة، ويشجّعهم على الاستعداد لاختبار نافس بدون خوف.
+            </div>
+        </div>
+
+        <!-- سؤال 4 -->
+        <div class="question-card" id="q4">
+            <div class="question-header">
+                <div class="question-number">4</div>
+                <div class="question-type">مفردات</div>
+            </div>
+            <div class="question-text">
+                ما مرادف كلمة <strong>"هادئ"</strong> في سياق الجملة: "في صباحٍ هادئ"؟
+            </div>
+            <ul class="options">
+                <li>أ) صاخب.</li>
+                <li>ب) هادئ = ساكن ومستقر.</li>
+                <li>ج) سريع.</li>
+                <li>د) مزدحم.</li>
+            </ul>
+            <button class="answer-btn" onclick="toggleAnswer('q4')">إظهار الإجابة</button>
+            <div class="answer-box">
+                المرادف المناسب: <strong>ساكن ومستقر</strong>، أي لا ضوضاء ولا إزعاج.
+            </div>
+        </div>
+
+        <!-- سؤال 5 -->
+        <div class="question-card" id="q5">
+            <div class="question-header">
+                <div class="question-number">5</div>
+                <div class="question-type">مفردات</div>
+            </div>
+            <div class="question-text">
+                ضد كلمة <strong>"الخوف"</strong> هو:
+            </div>
+            <ul class="options">
+                <li>أ) القلق.</li>
+                <li>ب) التوتر.</li>
+                <li>ج) الشجاعة والاطمئنان.</li>
+                <li>د) التعب.</li>
+            </ul>
+            <button class="answer-btn" onclick="toggleAnswer('q5')">إظهار الإجابة</button>
+            <div class="answer-box">
+                ضد الخوف هو: <strong>الشجاعة والاطمئنان</strong>، وهما ما يحتاجه الطالب
+                عند الدخول لاختبار مثل نافس.
+            </div>
+        </div>
+
+        <!-- سؤال 6 -->
+        <div class="question-card" id="q6">
+            <div class="question-header">
+                <div class="question-number">6</div>
+                <div class="question-type">مهارات عليا</div>
+            </div>
+            <div class="question-text">
+                تخيّل أن أحد زملائك يشعر بالخوف من اختبار نافس، ماذا تنصحه أن يفعل؟
+            </div>
+            <button class="answer-btn" onclick="toggleAnswer('q6')">إظهار الإجابة</button>
+            <div class="answer-box">
+                من النصائح المقترحة:<br>
+                – أن يذاكر بهدوء وبخطة بسيطة قبل الاختبار.<br>
+                – أن يسأل معلمه إذا لم يفهم شيئًا.<br>
+                – أن يتذكر أن الاختبار فرصة لقياس ما تعلّمه، وليس شيئًا مخيفًا.<br>
+                – أن يدعو الله بالتوفيق ويثق بنفسه.
+            </div>
+        </div>
+
+        <!-- سؤال 7 -->
+        <div class="question-card" id="q7">
+            <div class="question-header">
+                <div class="question-number">7</div>
+                <div class="question-type">تطبيق</div>
+            </div>
+            <div class="question-text">
+                اذكر عادتين مفيدتين تساعدانك على النجاح في اختبار نافس.
+            </div>
+            <button class="answer-btn" onclick="toggleAnswer('q7')">إظهار الإجابة</button>
+            <div class="answer-box">
+                مثال لعادات مفيدة:<br>
+                – تنظيم الوقت والمذاكرة قبل الاختبار بعدة أيام.<br>
+                – حل نماذج وأسئلة سابقة للتدريب.<br>
+                – النوم المبكر قبل يوم الاختبار.<br>
+                – الحضور المبكر للمدرسة بهدوء وبدون استعجال.
+            </div>
+        </div>
+
+        <!-- سؤال 8 -->
+        <div class="question-card" id="q8">
+            <div class="question-header">
+                <div class="question-number">8</div>
+            <div class="question-type">تفكير وتأمل</div>
+            </div>
+            <div class="question-text">
+                ما رأيك في العبارة التالية:  
+                <em>"الطالب المتفوق لا يركّز على الدرجة فقط، بل يهتم بما تعلّمه فعلاً."</em>  
+                هل توافق عليها؟ ولماذا؟
+            </div>
+            <button class="answer-btn" onclick="toggleAnswer('q8')">إظهار الإجابة</button>
+            <div class="answer-box">
+                يمكن أن تكون إجابة مقترحة:<br>
+                نعم، أوافق؛ لأن الهدف من الدراسة هو الفهم والاستفادة في الحياة، والدرجة
+                مجرد نتيجة. إذا فهم الطالب واستفاد فسوف تأتي الدرجات الجيدة غالبًا تلقائيًا.
+            </div>
+        </div>
+
+        <!-- بطاقة نتيجة لطيفة -->
+        <div class="result-card">
+            <div class="result-title">كيف كانت رحلتك مع التحديات؟ 🌟</div>
+            <div>
+                إذا حاولت التفكير في كل سؤال قبل أن تضغط على زر "إظهار الإجابة"،  
+                فأنت بالفعل تتدرّب مثل أبطال نافس الحقيقيين.  
+                <br><br>
+                تذكّر: المهم أن تتعلّم من كل سؤال، لا أن تصيب كل الإجابات من المرة الأولى.
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <div class="footer">
+        هذا الموقع مشروع بسيط عن اختبار نافس من إعداد الطالب
+        <span>عزام اللذيذ</span>، تحت إشراف المعلم
+        <span>مقرن المطيري</span>  
+        <br>
+        مدرسة الإمام الشوكاني الابتدائية – © 1447 هـ / 2026 م
+    </div>
+</div>
+
+<script>
+    // دالة بسيطة لفتح/إغلاق الإجابة
+    function toggleAnswer(id) {
+        var card = document.getElementById(id);
+        if (!card) return;
+        card.classList.toggle('open');
+    }
+</script>
+</body>
+</html>
